@@ -1,22 +1,25 @@
 package main
-import  g "github.com/gorilla/handlers"
 
-import  "github.com/gorilla/mux"
-import "fmt"
-import "net/http"
-import  "os"
+import (
+	"fmt"
+	"net/http"
+	"os"
 
-func  homeHandler( w http.ResponseWriter , r *http.Request){
-fmt.Println(w , "homepage ")
+	g "github.com/gorilla/handlers"
+	"github.com/gorilla/mux"
+)
+
+func homeHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "homepage ")
 }
-func  indexhandler( w http.ResponseWriter , r *http.Request){
-	fmt.Fprintf(w , "indexpage ")
-	}
+func indexhandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "indexpage ")
+}
 func main() {
 	router := mux.NewRouter()
-	router.HandleFunc("/" , indexhandler)
-	router.HandleFunc("/home" , homeHandler)
-	//loginHandler  middleware of gorilla handlers 
-	loggedRouter:= g.LoggingHandler(os.Stdout , router)
-	http.ListenAndServe(":8080" , loggedRouter)
+	router.HandleFunc("/", indexhandler)
+	router.HandleFunc("/home", homeHandler)
+	//loginHandler  middleware of gorilla handlers
+	loggedRouter := g.LoggingHandler(os.Stdout, router)
+	http.ListenAndServe(":8080", loggedRouter)
 }
