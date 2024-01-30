@@ -49,11 +49,12 @@ func handler3(w http.ResponseWriter , r*http.Request){
 }
 
 
-// loger func to implement middleware
+// loger func to create middleware
 func logger( f http.HandlerFunc) http.HandlerFunc {
 // return anonymous function
 	return func(w http.ResponseWriter , r *http.Request){
 		fmt.Println( now() + "befor")
+		// wait until f is executed 
 		defer fmt.Println("after" + now())
 		f(w,r)
 	}
@@ -69,6 +70,8 @@ func logger( f http.HandlerFunc) http.HandlerFunc {
 
 http.HandleFunc("/h1",handler1)
 http.HandleFunc("/h2", handler2)
+// call middleware 
+http.HandleFunc("/h3" , logger(handler3))
 http.ListenAndServe(":8080" , nil)
 
  }
