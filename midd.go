@@ -62,16 +62,16 @@ func logger( f http.HandlerFunc) http.HandlerFunc {
 
 
 
- func main(){
-	fmt.Println("starting")
+ //func main(){
+	//fmt.Println("starting")
 // when you are building a web app there is probably some shared functionality that ypu want to run from many or even all (http requests)
 //router=>middleware=>Application Handler 
 // Application Handler render response to the client 
 
-http.HandleFunc("/h1",handler1)
-http.HandleFunc("/h2", handler2)
-// call middleware 
-http.HandleFunc("/h3" , logger(handler3))
-http.ListenAndServe(":8080" , nil)
+//http.HandleFunc("/h1",handler1)
+//http.HandleFunc("/h2", handler2)
+// call middleware
+//http.HandleFunc("/h3" , logger(handler3))
+//http.ListenAndServe(":8080" , nil)
 
- }
+// }
